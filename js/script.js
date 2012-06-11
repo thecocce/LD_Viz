@@ -4,6 +4,8 @@ if (document.addEventListener) {
   window.onload = init;
 }
 
+var hide = true;
+var lastNode;
 
 function init(){
 	
@@ -12,17 +14,17 @@ function init(){
 	//.debugMode(1)
 	.drawingProperties({
 		defaultLabelColor: '#fff',
-	    defaultLabelSize: 18,
+	    defaultLabelSize: 14,
 	    defaultLabelBGColor: '#fff',
 	    defaultLabelHoverColor: '#000',
 		labelSize: 'proportional',
-		labelSizeRatio: 5,
+		labelSizeRatio: 8,
 	    labelThreshold: 0,
 	    defaultEdgeType: 'curve',
 	})
 	.graphProperties({
 	    minNodeSize: 0.5,
-	    maxNodeSize: 15,
+	    maxNodeSize: 20,
 	    minEdgeSize: 1,
 	    maxEdgeSize: 1
 	})
@@ -64,33 +66,44 @@ function init(){
 		
 	})
 */	
-	// . outnodes
-	.bind('outnodes',function(){
-		sigInst
-		.iterEdges(function(e){
-			e.hidden = 0;
-		})
-		.iterNodes(function(n){
-			n.hidden = 0;
-		}).draw(1,1,1,true);
-	})
-	.bind("upnodes", function () {
+	// . Click on a node
+	.bind("upnodes", function (event) {
 		var nodes = event.content;
 		var neighbors = {};
-		sigInst
-		.iterEdges(function(e){
-	    	if(nodes.indexOf(e.source)>=0 || nodes.indexOf(e.target)>=0){
-	        	neighbors[e.source] = 1;
-	        	neighbors[e.target] = 1;
-	      }
-	   	})
-		.iterNodes(function(n){
-	    	if(!neighbors[n.id]){
-	    		n.hidden = 1;
-	      	}else{
-	        	n.hidden = 0;
-	      	}
-	    }).draw(1,1,1,true);
+		// Switch state if same node
+		if(lastNode == String(nodes)){
+			hide = !hide;
+		}
+		else
+			hide = true;
+		lastNode = nodes;
+		// Hide
+		if(hide){
+		
+			sigInst
+			.iterEdges(function(e){
+				if(nodes.indexOf(e.source)>=0 || nodes.indexOf(e.target)>=0){
+					neighbors[e.source] = 1;
+					neighbors[e.target] = 1;
+			  }
+			})
+			.iterNodes(function(n){
+				if(!neighbors[n.id]){
+					n.hidden = 1;
+				}else{
+					n.hidden = 0;
+				}
+			}).draw(1,1,1,true);
+		}else{
+		
+			sigInst
+			.iterEdges(function(e){
+				e.hidden = 0;
+			})
+			.iterNodes(function(n){
+				n.hidden = 0;
+			}).draw(1,1,1,true);			
+		}
 	});
 	
 	

@@ -5,6 +5,7 @@ html,body{
 	margin:auto;
 	padding: 0px;
 	font-size: 12px;
+	font-family: Consolas, Times New Roman, serif;
 }
 
 #sig{
@@ -16,18 +17,29 @@ html,body{
 }
 
 #hud{
-	font-family: Georgia, Times New Roman, serif;
 	position:absolute;
 	background:white;
 	color:black;
 	top:10px;
 	left:10px;
 	padding:10px;
+	
 	border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 }
 
+#about{
+	padding:5px;
+	width:95%;
+	margin:auto;
+	background:grey;
+	color:white;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+
+}
 
 #hud a{
 	color:black;
