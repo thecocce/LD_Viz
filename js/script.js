@@ -72,7 +72,6 @@ function init(){
 	   	})
 		.iterNodes(function(n){
 	    	if(!neighbors[n.id]){
-				security_counter++;
 	    		n.hidden = 1;
 	      	}else{
 	        	n.hidden = 0;
