@@ -7,19 +7,25 @@ if (document.addEventListener) {
 function init(){
 	
 	// Instanciate sigma.js and customize rendering :
-	var sigInst = sigma.init(document.getElementById('sig')).drawingProperties({
+	var sigInst = sigma.init(document.getElementById('sig'))
+	//.debugMode(1)
+	.drawingProperties({
 		defaultLabelColor: '#fff',
 	    defaultLabelSize: 18,
 	    defaultLabelBGColor: '#fff',
 	    defaultLabelHoverColor: '#000',
-	    labelThreshold: 4,
-	    defaultEdgeType: 'curve'
-	}).graphProperties({
+		labelSize: 'proportional',
+		labelSizeRatio: 5,
+	    labelThreshold: 0,
+	    defaultEdgeType: 'curve',
+	})
+	.graphProperties({
 	    minNodeSize: 0.5,
 	    maxNodeSize: 15,
 	    minEdgeSize: 1,
 	    maxEdgeSize: 1
-	}).mouseProperties({
+	})
+	.mouseProperties({
 	    maxRatio: 32,
 		minRatio: 0.7,
 		zoomDelta: 0.1,
@@ -30,7 +36,6 @@ function init(){
 	// Generate graphe nodes and edges from JSON data
 	// . Nodes
 	for(node in wordCloud.words){
-		//console.log();
 		sigInst.addNode(wordCloud.words[node].label,
 		{
 			'x':Math.random(),
@@ -50,17 +55,19 @@ function init(){
 			sigInst.addEdge(instance++,wordCloud.words[node].label,wordCloud.words[node].edges[targetNode]);
 		}
 	}
-	
+
 	// Bind events :
-	/*sigInst.bind('overnodes',function(event){
+	sigInst.bind('overnodes',function(event){
 		var nodes = event.content;
 		var neighbors = {};
-		sigInst.iterEdges(function(e){
+		sigInst
+	.iterEdges(function(e){
 	    	if(nodes.indexOf(e.source)>=0 || nodes.indexOf(e.target)>=0){
 	        	neighbors[e.source] = 1;
 	        	neighbors[e.target] = 1;
 	      }
-	    }).iterNodes(function(n){
+	   })
+	.iterNodes(function(n){
 	    	if(!neighbors[n.id]){
 	    		n.hidden = 1;
 	      	}else{
@@ -68,13 +75,14 @@ function init(){
 	      	}
 	    }).draw(2,2,2);
 	}).bind('outnodes',function(){
-		sigInst.iterEdges(function(e){
+		sigInst
+		.iterEdges(function(e){
 			e.hidden = 0;
-		}).iterNodes(function(n){
+		})
+		.iterNodes(function(n){
 			n.hidden = 0;
 		}).draw(2,2,2);
 	});
-	*/
 	
 	// UI
 	// . ForceAtlas
@@ -85,11 +93,11 @@ function init(){
 		if(isRunning){
 	    	isRunning = false;
 	    	sigInst.stopForceAtlas2();
-	    	document.getElementById('stop-layout').nodeValue = 'Start Layout';
+	    	document.getElementById('stop-layout').value = 'Start Layout';
 	    }else{
 	    	isRunning = true;
 	    	sigInst.startForceAtlas2();
-	    	document.getElementById('stop-layout').nodeValue = 'Stop Layout';
+	    	document.getElementById('stop-layout').value = 'Stop Layout';
 	    }
 	},true);
 	// Rescale graph

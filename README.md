@@ -12,6 +12,7 @@ This project consists in an interactive web application for data visualization a
 Complete presentation: http://checkthis.com/jjaa
 
 Online demo: [Latest](http://neyret.fr/~cboissie/ldviz "LD_Viz latest")
+
 Click on the "Stop" button to stop the forceatlas2 algorithm and see final graph (with edges).
 
 Licence:
