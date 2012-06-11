@@ -19,10 +19,6 @@ class Word:
 			self._sentences.append(sentenceId)
 		#else:
 			#print "Sentence " + sentenceId + " already registred for the word " + self._value
-	
-	def getRepetitionNumber(self):
-		#print self._sentences
-		return len(self._sentences)
 
 class Sentence:
 	
@@ -99,6 +95,10 @@ class WordCloud:
 		result = result.replace(":","")
 		result = result.replace("(","")
 		result = result.replace(")","")
+		result = result.replace("\\","")
+		result = result.replace(";","")
+		result = result.replace("&","")
+		result = result.replace("`","")
 		result = result.replace("&quot","")	# html ';'
 		result = result.replace("&amp","") 	# html '&'
 		# Word blacklist
@@ -144,7 +144,7 @@ class WordCloud:
 						data[word_base].append(word)
 						self._links+=1
 						
-			print "{'"+str(word_base) + "':" + str(data[word_base]) + "},\n"	 
+			print "{'label':'" + str(word_base) + "','repetition':" + str(self._words[w]._repetition) + " ,'edges':" + str(data[word_base]) + "},"	 
 		
 		
 		return data

@@ -2,11 +2,14 @@
   <head>
     <meta charset=utf-8>
     <title>Test sigma.js</title>
-    <!-- JS code -->
-    <script src="js/sigma.min.js"></script>
-    <script src="js/sigma.parseGexf.js"></script>
-    <!-- <script src="sigma.forceatlas2.js"></script> -->
- <!--   <script src="prettify.js"></script> -->
+    <!-- Libraries code -->
+    <script src="js/lib/sigma.min.js"></script>
+    <script src="js/lib/sigma.forceatlas2.js"></script>
+    
+    <!-- JSON Data -->
+    <script src="data/json/ld23.js"></script>
+    
+    <!-- Page script -->
     <script src="js/script.js"></script>
         
   <!--  <link rel="stylesheet" href="style.css"> -->
@@ -15,9 +18,10 @@
   <body>
     
     <header>
-      <h1>Test sigma.js</h1>
+      <h1>LudumDare Viz</h1>
     </header>
-    
+    <input type="button" id="stop-layout" value="Stop"/>
+    <input type="button" id="rescale-graph" value="Rescale"/>
     <div id="sig" style="width:800px;height:500px;margin:auto;border:solid black 1px;">	
     </div>
     
