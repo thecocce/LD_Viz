@@ -60,7 +60,21 @@ function init(){
 	// Bind events :
 	sigInst
 	// . overnodes
-	.bind('overnodes',function(event){
+/*	.bind('overnodes',function(event){
+		
+	})
+*/	
+	// . outnodes
+	.bind('outnodes',function(){
+		sigInst
+		.iterEdges(function(e){
+			e.hidden = 0;
+		})
+		.iterNodes(function(n){
+			n.hidden = 0;
+		}).draw(1,1,1,true);
+	})
+	.bind("upnodes", function () {
 		var nodes = event.content;
 		var neighbors = {};
 		sigInst
@@ -76,34 +90,24 @@ function init(){
 	      	}else{
 	        	n.hidden = 0;
 	      	}
-	    }).draw(2,2,2);
-	})
-	// . outnodes
-	.bind('outnodes',function(){
-		sigInst
-		.iterEdges(function(e){
-			e.hidden = 0;
-		})
-		.iterNodes(function(n){
-			n.hidden = 0;
-		}).draw(2,2,2);
-	})
-	;
+	    }).draw(1,1,1,true);
+	});
+	
 	
 	// UI
 	// . ForceAtlas
-	sigInst.startForceAtlas2();
-	var isRunning = true;
+	//sigInst.startForceAtlas2();
+	var isRunning = false;
   	document.getElementById('stop-layout').addEventListener('click',function()
 	{
 		if(isRunning){
 	    	isRunning = false;
 	    	sigInst.stopForceAtlas2();
-	    	document.getElementById('stop-layout').value = 'Start Layout';
+	    	document.getElementById('stop-layout').value = 'Start algorithm';
 	    }else{
 	    	isRunning = true;
 	    	sigInst.startForceAtlas2();
-	    	document.getElementById('stop-layout').value = 'Stop Layout';
+	    	document.getElementById('stop-layout').value = 'Stop algorithm';
 	    }
 	},true);
 	// Rescale graph
@@ -114,8 +118,10 @@ function init(){
 			})
 			.iterNodes(function(n){
 				n.hidden = 0;
-			}).draw(2,2,2);
+			}).draw(1,1,1,true);
 	},true);
+	
+	
 	
 	// Draw the graph :
 	sigInst.draw();
