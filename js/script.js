@@ -9,18 +9,22 @@ function init(){
 	// Instanciate sigma.js and customize rendering :
 	var sigInst = sigma.init(document.getElementById('sig')).drawingProperties({
 		defaultLabelColor: '#fff',
-	    defaultLabelSize: 14,
+	    defaultLabelSize: 18,
 	    defaultLabelBGColor: '#fff',
 	    defaultLabelHoverColor: '#000',
-	    labelThreshold: 6,
+	    labelThreshold: 4,
 	    defaultEdgeType: 'curve'
 	}).graphProperties({
 	    minNodeSize: 0.5,
-	    maxNodeSize: 20,
+	    maxNodeSize: 15,
 	    minEdgeSize: 1,
 	    maxEdgeSize: 1
 	}).mouseProperties({
-	    maxRatio: 32
+	    maxRatio: 32,
+		minRatio: 0.7,
+		zoomDelta: 0.1,
+		zoomMultiply: 2
+		
 	});
 
 	// Generate graphe nodes and edges from JSON data
@@ -48,7 +52,7 @@ function init(){
 	}
 	
 	// Bind events :
-	sigInst.bind('overnodes',function(event){
+	/*sigInst.bind('overnodes',function(event){
 		var nodes = event.content;
 		var neighbors = {};
 		sigInst.iterEdges(function(e){
@@ -70,6 +74,7 @@ function init(){
 			n.hidden = 0;
 		}).draw(2,2,2);
 	});
+	*/
 	
 	// UI
 	// . ForceAtlas
