@@ -4,6 +4,7 @@ if (document.addEventListener) {
   window.onload = init;
 }
 
+
 function init(){
 	
 	// Instanciate sigma.js and customize rendering :
@@ -57,24 +58,29 @@ function init(){
 	}
 
 	// Bind events :
-	sigInst.bind('overnodes',function(event){
+	sigInst
+	// . overnodes
+	.bind('overnodes',function(event){
 		var nodes = event.content;
 		var neighbors = {};
 		sigInst
-	.iterEdges(function(e){
+		.iterEdges(function(e){
 	    	if(nodes.indexOf(e.source)>=0 || nodes.indexOf(e.target)>=0){
 	        	neighbors[e.source] = 1;
 	        	neighbors[e.target] = 1;
 	      }
-	   })
-	.iterNodes(function(n){
+	   	})
+		.iterNodes(function(n){
 	    	if(!neighbors[n.id]){
+				security_counter++;
 	    		n.hidden = 1;
 	      	}else{
 	        	n.hidden = 0;
 	      	}
 	    }).draw(2,2,2);
-	}).bind('outnodes',function(){
+	})
+	// . outnodes
+	.bind('outnodes',function(){
 		sigInst
 		.iterEdges(function(e){
 			e.hidden = 0;
@@ -82,7 +88,8 @@ function init(){
 		.iterNodes(function(n){
 			n.hidden = 0;
 		}).draw(2,2,2);
-	});
+	})
+	;
 	
 	// UI
 	// . ForceAtlas
@@ -102,7 +109,13 @@ function init(){
 	},true);
 	// Rescale graph
 	document.getElementById('rescale-graph').addEventListener('click',function(){
-	    sigInst.position(0,0,1).draw();
+			sigInst
+			.iterEdges(function(e){
+				e.hidden = 0;
+			})
+			.iterNodes(function(n){
+				n.hidden = 0;
+			}).draw(2,2,2);
 	},true);
 	
 	// Draw the graph :
