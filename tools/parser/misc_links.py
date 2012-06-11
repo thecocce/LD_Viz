@@ -47,11 +47,15 @@ def start(file):
 	#json += "]}"
 	#print json
 	test = WordCloud(ld_data)
-	for word,d in test._words.iteritems():
-		if(d.getRepetitionNumber()>1):
-			print word + " x " + str(d.getRepetitionNumber())# + ", linked to " + str(d._sentences)
-	
-	
+	# Display word counts statistics
+	#for word,d in test._words.iteritems():
+	#	if(d.getRepetitionNumber()>1):
+	#		print word + " x " + str(d.getRepetitionNumber())# + ", linked to " + str(d._sentences)
+	# Display link between sentence -> words
+	#for uid,s in test._sentences.iteritems():
+	#	print s._value + " -> (" + str(s._words) + ")"
+	test.generateWordCorrelations()
+	test.printStats()
 	
 # Just type ">misc_links.py path/to/data.htm"
 if __name__ == '__main__':
