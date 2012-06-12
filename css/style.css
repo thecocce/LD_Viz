@@ -8,6 +8,18 @@ html,body{
 	font-family: Consolas, Times New Roman, serif;
 }
 
+.title{
+	font-size:2em;
+	margin-top:-10px;
+	margin-bottom:15px;
+	border-bottom: solid grey 1px;
+}
+
+a .twitter{
+	color:blue;
+	font-weight:bold;
+}
+
 #sig{
 	width:100%;
 	height:100%;
