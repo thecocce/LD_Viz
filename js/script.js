@@ -145,7 +145,6 @@ function init(){
 	sigInst.draw();
 }
 
-
 // Switch data set
 function changeDataSet(dropdown){
 
