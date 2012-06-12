@@ -1,5 +1,5 @@
 var ld21_wordCloud = {
-'stats':{'sentences':599,'words':863,'edges':2586,'blacklist':['a', 'the', 's', 't', 'of', 'in', 'to', 'and', 'is', 'on', 'for']} 	
+'stats':{'sentences':599,'words':863,'edges':2586,'blacklist':['a', 'the', 's', 't', 'of', 'in', 'to', 'and', 'is', 'on', 'for']}, 	
 'words':[
 {'label':'code','repetition':1 ,'edges':['need', 'escape']},
 {'label':'ninja','repetition':2 ,'edges':['princess', 'escape']},

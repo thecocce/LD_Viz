@@ -1,5 +1,5 @@
 var ld22_wordCloud = {
-'stats':{'sentences':891,'words':1087,'edges':3268,'blacklist':['a', 'the', 's', 't', 'of', 'in', 'to', 'and', 'is', 'on', 'for']} 	
+'stats':{'sentences':891,'words':1087,'edges':3268,'blacklist':['a', 'the', 's', 't', 'of', 'in', 'to', 'and', 'is', 'on', 'for']},
 'words':[
 {'label':'all','repetition':1 ,'edges':['alone', 'elona']},
 {'label':'ldkittenrl','repetition':1 ,'edges':[]},
