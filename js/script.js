@@ -71,13 +71,27 @@ function init(){
 	/** MULTIPLATFORM **/
 	else{
 		// . Nodes
+		// .. Games
 		for(node in multiplatform.games){
 			sigInst.addNode(multiplatform.games[node].uid,
 			{
 				'x':Math.random(),
 				'y':Math.random(),
 				'label':multiplatform.games[node].name,
-				'size':1,//multiplatform.games[node].repetition,
+				'size':multiplatform.games[node].platforms.length,
+				'color': 'rgb('+Math.round(Math.random()*256)+','+
+								Math.round(Math.random()*256)+','+
+								Math.round(Math.random()*256)+')'
+			});
+		}
+		// .. Platforms
+		for(node in multiplatform.stats){
+			sigInst.addNode(node,
+			{
+				'x':Math.random(),
+				'y':Math.random(),
+				'label':node,
+				'size':multiplatform.stats[node],
 				'color': 'rgb('+Math.round(Math.random()*256)+','+
 								Math.round(Math.random()*256)+','+
 								Math.round(Math.random()*256)+')'
@@ -86,11 +100,11 @@ function init(){
 		
 		// . Edges
 		var instance = 0;
-	/*	for(node in wordCloud.words){
-			for( targetNode in wordCloud.words[node].edges){
-				sigInst.addEdge(instance++,wordCloud.words[node].label,wordCloud.words[node].edges[targetNode]);
+		for(node in multiplatform.games){
+			for( targetNode in multiplatform.games[node].platforms){
+				sigInst.addEdge(instance++,multiplatform.games[node].uid,multiplatform.games[node].platforms[targetNode]);
 			}
-		}*/
+		}
 	}
 	// Bind events :
 	sigInst
