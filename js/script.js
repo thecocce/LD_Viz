@@ -4,13 +4,16 @@ if (document.addEventListener) {
   window.onload = init;
 }
 
+const default_wordCloud = ld23_wordCloud;
+var wordCloud = default_wordCloud;
+var sigInst = null;
 var hide = true;
-var lastNode;
+var lastNode = null;
 
 function init(){
 	
 	// Instanciate sigma.js and customize rendering :
-	var sigInst = sigma.init(document.getElementById('sig'))
+	sigInst = sigma.init(document.getElementById('sig'))
 	//.debugMode(1)
 	.drawingProperties({
 		defaultLabelColor: '#fff',
@@ -132,6 +135,8 @@ function init(){
 			.iterNodes(function(n){
 				n.hidden = 0;
 			}).draw(1,1,1,true);
+			// Reset current target
+			lastNode = null;
 	},true);
 	
 	
@@ -139,3 +144,32 @@ function init(){
 	// Draw the graph :
 	sigInst.draw();
 }
+
+// Switch data set
+function changeDataSet(dropdown){
+
+	var index = dropdown.selectedIndex;
+	var dataSet = dropdown.options[index].value;
+	switch(dataSet){
+		case "LD21":
+		wordCloud = ld21_wordCloud;
+		break;
+		
+		case "LD22":
+		wordCloud = ld22_wordCloud;
+		break;
+		
+		case "LD23":
+		wordCloud = ld23_wordCloud;
+		break;
+		
+		default:
+		wordCloud = default_wordCloud;
+	}
+	// Stop sigmajs
+	delete sigInst;
+	document.getElementById('sig').innerHTML = "";
+	// Start sigmajs again
+	init();
+}
+

@@ -1,5 +1,5 @@
 var ld23_wordCloud = {
-'stats':{'sentences':1402,'words':1702,'edges':4912,'blacklist':['a', 'the', 's', 't', 'of', 'in', 'to', 'and', 'is', 'on', 'for']} 	
+'stats':{'sentences':1402,'words':1702,'edges':4912,'blacklist':['a', 'the', 's', 't', 'of', 'in', 'to', 'and', 'is', 'on', 'for']},
 'words':[
 {'label':'hats','repetition':1 ,'edges':['men', 'not', 'wearing']},
 {'label':'four','repetition':1 ,'edges':['tower', 'winds']},
