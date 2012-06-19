@@ -1,5 +1,5 @@
 var ld23_multiplatform = {
-'stats':  {'osx': 256, 'web': 852, 'windows': 876, 'ios': 2, 'linux': 174, 'android': 120}	
+'stats':  {'osx': 256, 'web': 852, 'windows': 876, 'ios': 2, 'linux': 174, 'android': 120},
 'games':[
 
 {'name':'the traveler','platforms':['web', 'windows', 'android']},

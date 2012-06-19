@@ -1,5 +1,5 @@
 var ld22_multiplatform = {
-'stats': {'osx': 156, 'web': 467, 'windows': 593, 'ios': 2, 'linux': 131, 'android': 71}	
+'stats': {'osx': 156, 'web': 467, 'windows': 593, 'ios': 2, 'linux': 131, 'android': 71},
 'games':[
 {'name':'eyes of madness','platforms':['windows']},
 {'name':'a room of one s own','platforms':['linux']},

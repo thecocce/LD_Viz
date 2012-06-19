@@ -9,10 +9,14 @@
     <script src="js/lib/sigma.forceatlas2.js"></script>
     
     <!-- JSON Data -->
-	<script src="data/json/ld21.js"></script>
-	<script src="data/json/ld22.js"></script>
-    <script src="data/json/ld23.js"></script>
-    
+	<!-- . WordCloud -->
+	<script src="data/json/wordcloud/ld21.js"></script>
+	<script src="data/json/wordcloud/ld22.js"></script>
+    <script src="data/json/wordcloud/ld23.js"></script>
+	<!-- . Multiplatform -->
+    <script src="data/json/multiplatform/ld21.js"></script>
+	<script src="data/json/multiplatform/ld22.js"></script>
+    <script src="data/json/multiplatform/ld23.js"></script>
     <!-- Page script -->
     <script src="js/script.js"></script>
         
@@ -26,6 +30,13 @@
 	
 	<div id="hud">
 			<p class="title">LudumDare Viz</p>
+			<form>
+			<strong>View:</strong>
+			<select name="view_mode" onchange="changeViewMode(this.form.view_mode);">
+			<option value="wordcloud" selected="selected">WordCloud</option>
+			<option value="multiplatform">Multiplatform</option>
+			</select>
+			</form>
 			<form>
 			<strong>Data set:</strong>
 			<select name="data_set" onchange="changeDataSet(this.form.data_set);">

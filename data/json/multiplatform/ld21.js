@@ -1,5 +1,5 @@
 var ld21_multiplatform = {
-'stats': {'osx': 96, 'web': 295, 'windows': 419, 'ios': 3, 'linux': 73, 'android': 31}	
+'stats': {'osx': 96, 'web': 295, 'windows': 419, 'ios': 3, 'linux': 73, 'android': 31},
 'games':[
 {'name':'castlegame engine','platforms':['windows']},
 {'name':'sunrise','platforms':['windows']},
