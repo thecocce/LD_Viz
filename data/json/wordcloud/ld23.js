@@ -1704,5 +1704,5 @@ var ld23_wordCloud = {
 {'label':'superpixel','repetition':1 ,'edges':[]},
 {'label':'speedrun','repetition':1 ,'edges':['tiny', 'maze']},
 
-],
+]};
 

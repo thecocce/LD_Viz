@@ -5,7 +5,10 @@ if (document.addEventListener) {
 }
 
 const default_wordCloud = ld23_wordCloud;
+const default_multiplatform = ld23_multiplatform;
 var wordCloud = default_wordCloud;
+var multiplatform = default_multiplatform;
+var viewMode = "wordcloud";
 var sigInst = null;
 var hide = true;
 var lastNode = null;
@@ -40,28 +43,55 @@ function init(){
 	});
 
 	// Generate graphe nodes and edges from JSON data
-	// . Nodes
-	for(node in wordCloud.words){
-		sigInst.addNode(wordCloud.words[node].label,
-		{
-			'x':Math.random(),
-			'y':Math.random(),
-			'label':wordCloud.words[node].label,
-			'size':wordCloud.words[node].repetition,
-			'color': 'rgb('+Math.round(Math.random()*256)+','+
-			                Math.round(Math.random()*256)+','+
-			                Math.round(Math.random()*256)+')'
-		});
-	}
-	
-	// . Edges
-	var instance = 0;
-	for(node in wordCloud.words){
-		for( targetNode in wordCloud.words[node].edges){
-			sigInst.addEdge(instance++,wordCloud.words[node].label,wordCloud.words[node].edges[targetNode]);
+
+	/** WORD CLOUD **/
+	if(viewMode == "wordcloud"){
+		// . Nodes
+		for(node in wordCloud.words){
+			sigInst.addNode(wordCloud.words[node].label,
+			{
+				'x':Math.random(),
+				'y':Math.random(),
+				'label':wordCloud.words[node].label,
+				'size':wordCloud.words[node].repetition,
+				'color': 'rgb('+Math.round(Math.random()*256)+','+
+								Math.round(Math.random()*256)+','+
+								Math.round(Math.random()*256)+')'
+			});
+		}
+		
+		// . Edges
+		var instance = 0;
+		for(node in wordCloud.words){
+			for( targetNode in wordCloud.words[node].edges){
+				sigInst.addEdge(instance++,wordCloud.words[node].label,wordCloud.words[node].edges[targetNode]);
+			}
 		}
 	}
-
+	/** MULTIPLATFORM **/
+	else{
+		// . Nodes
+		for(node in multiplatform.games){
+			sigInst.addNode(multiplatform.games[node].name,
+			{
+				'x':Math.random(),
+				'y':Math.random(),
+				'label':multiplatform.games[node].name,
+				'size':1,//multiplatform.games[node].repetition,
+				'color': 'rgb('+Math.round(Math.random()*256)+','+
+								Math.round(Math.random()*256)+','+
+								Math.round(Math.random()*256)+')'
+			});
+		}
+		
+		// . Edges
+		var instance = 0;
+	/*	for(node in wordCloud.words){
+			for( targetNode in wordCloud.words[node].edges){
+				sigInst.addEdge(instance++,wordCloud.words[node].label,wordCloud.words[node].edges[targetNode]);
+			}
+		}*/
+	}
 	// Bind events :
 	sigInst
 	// . overnodes
@@ -153,18 +183,46 @@ function changeDataSet(dropdown){
 	switch(dataSet){
 		case "LD21":
 		wordCloud = ld21_wordCloud;
+		multiplatform = ld21_multiplatform;
 		break;
 		
 		case "LD22":
 		wordCloud = ld22_wordCloud;
+		multiplatform = ld22_multiplatform;
 		break;
 		
 		case "LD23":
 		wordCloud = ld23_wordCloud;
+		multiplatform = ld23_multiplatform;
 		break;
 		
 		default:
 		wordCloud = default_wordCloud;
+		multiplatform = default_multiplatform;
+	}
+	// Stop sigmajs
+	delete sigInst;
+	document.getElementById('sig').innerHTML = "";
+	// Start sigmajs again
+	init();
+}
+
+// Switch data set
+function changeViewMode(dropdown){
+
+	var index = dropdown.selectedIndex;
+	var dataSet = dropdown.options[index].value;
+	switch(dataSet){
+		case "wordcloud":
+		viewMode = "wordcloud"; 
+		break;
+		
+		case "multiplatform":
+		viewMode = "multiplatform"; 
+		break;
+		
+		default:
+		viewMode = "wordcloud"; 
 	}
 	// Stop sigmajs
 	delete sigInst;
