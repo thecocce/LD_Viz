@@ -72,7 +72,7 @@ function init(){
 	else{
 		// . Nodes
 		for(node in multiplatform.games){
-			sigInst.addNode(multiplatform.games[node].name,
+			sigInst.addNode(multiplatform.games[node].uid,
 			{
 				'x':Math.random(),
 				'y':Math.random(),
