@@ -6,12 +6,16 @@ if (document.addEventListener) {
 
 const default_wordCloud = ld23_wordCloud;
 const default_multiplatform = ld23_multiplatform;
+
+const colors = {'osx': [10,255,255], 'web': [255,255,10], 'windows': [255,10,10], 'ios': [255,10,255], 'linux': [10,255,10], 'android':[50,50,255]};
+
 var wordCloud = default_wordCloud;
 var multiplatform = default_multiplatform;
 var viewMode = "wordcloud";
 var sigInst = null;
 var hide = true;
 var lastNode = null;
+var showLabels = 1;
 
 function init(){
 	
@@ -24,7 +28,7 @@ function init(){
 	    defaultLabelBGColor: '#fff',
 	    defaultLabelHoverColor: '#000',
 		labelSize: 'proportional',
-		labelSizeRatio: 8,
+		labelSizeRatio: 3, //8
 	    labelThreshold: 0,
 	    defaultEdgeType: 'curve',
 	})
@@ -73,28 +77,34 @@ function init(){
 		// . Nodes
 		// .. Games
 		for(node in multiplatform.games){
+			
+			c = computeColor(multiplatform.games[node].platforms);
+			
 			sigInst.addNode(multiplatform.games[node].uid,
 			{
 				'x':Math.random(),
 				'y':Math.random(),
 				'label':multiplatform.games[node].name,
 				'size':multiplatform.games[node].platforms.length,
-				'color': 'rgb('+Math.round(Math.random()*256)+','+
-								Math.round(Math.random()*256)+','+
-								Math.round(Math.random()*256)+')'
+				'color': 'rgb('+c[0]+','+
+								c[1]+','+
+								c[2]+')'
 			});
 		}
 		// .. Platforms
 		for(node in multiplatform.stats){
+		
+			c = computeColor([node]);
+			
 			sigInst.addNode(node,
 			{
 				'x':Math.random(),
 				'y':Math.random(),
 				'label':node,
 				'size':multiplatform.stats[node],
-				'color': 'rgb('+Math.round(Math.random()*256)+','+
-								Math.round(Math.random()*256)+','+
-								Math.round(Math.random()*256)+')'
+				'color': 'rgb('+c[0]+','+
+								c[1]+','+
+								c[2]+')'
 			});
 		}
 		
@@ -103,6 +113,7 @@ function init(){
 		for(node in multiplatform.games){
 			for( targetNode in multiplatform.games[node].platforms){
 				sigInst.addEdge(instance++,multiplatform.games[node].uid,multiplatform.games[node].platforms[targetNode]);
+				//sigInst.addEdge(instance++,multiplatform.games[node].platforms[targetNode],multiplatform.games[node].uid);
 			}
 		}
 	}
@@ -178,9 +189,28 @@ function init(){
 			})
 			.iterNodes(function(n){
 				n.hidden = 0;
-			}).draw(1,1,1,true);
+			})
+			.graphProperties({
+				minNodeSize: 0.5,
+				maxNodeSize: 20,
+				minEdgeSize: 1,
+				maxEdgeSize: 1
+			})
+			.draw(1,1,1,true);
 			// Reset current target
 			lastNode = null;
+	},true);
+	// Hide/Show labels
+	document.getElementById('label').addEventListener('click',function(){
+		// Redraw 
+		sigInst
+			.graphProperties({
+				minNodeSize: 5,// 0.5
+				maxNodeSize: 5,
+				minEdgeSize: 1,
+				maxEdgeSize: 1
+			})
+			.draw(1,0,0,true);
 	},true);
 	
 	
@@ -244,4 +274,32 @@ function changeViewMode(dropdown){
 	// Start sigmajs again
 	init();
 }
+
+// Node color for the multiplatform visualization
+function computeColor(platformList){
+	
+	var rf,gf,bf;
+	var r,g,b;
+	var firstIteration = 1;
+	
+	for(platform in platformList){
+		r = colors[platformList[platform]][0];
+		g = colors[platformList[platform]][1];
+		b = colors[platformList[platform]][2];
+		if(firstIteration-->0){
+			rf = r;
+			gf = g;
+			bf = b;
+		}
+		// "Mixing" colors
+		else{
+			rf = (rf*r)/255;
+			gf = (gf*g)/255;
+			bf = (bf*b)/255;
+		}
+	}
+	return [rf,gf,bf]
+}
+
+
 
