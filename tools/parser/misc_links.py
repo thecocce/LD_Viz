@@ -46,7 +46,7 @@ def start(file):
 	# MultiPlatform
 	mp = MultiPlatform(ld_data)
 	for uid,g in mp._games.iteritems():
-		print "{'"+ mp._games[uid]._name + "':" + str(mp._games[uid]._platforms) + "},"
+		print "{'name':'"+ mp._games[uid]._name + "':" + str(mp._games[uid]._platforms) + "},"
 	mp.printStats()
 	
 	""" TESTS """
