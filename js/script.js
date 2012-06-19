@@ -28,7 +28,7 @@ function init(){
 	    defaultLabelBGColor: '#fff',
 	    defaultLabelHoverColor: '#000',
 		labelSize: 'proportional',
-		labelSizeRatio: 3, //8
+		labelSizeRatio: 8,
 	    labelThreshold: 0,
 	    defaultEdgeType: 'curve',
 	})
