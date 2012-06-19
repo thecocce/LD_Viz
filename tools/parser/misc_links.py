@@ -3,11 +3,14 @@
 ##
 # About: This is a dirty script for extracting data from misc_links HTML, and convert it to a JSON formalism
 # NB: Please README.md for more information concerning the misc_links parsing.
+# Data structure:  uid, name, user, platform_list, votes, coolness
 
 import sys
 import re
 from Data import LD_Data,Node
 from WordCloud import WordCloud
+from MultiPlatform import MultiPlatform
+
 
 def start(file):
 	file = open(file,'r')
@@ -20,7 +23,6 @@ def start(file):
 	entries.pop(0) # Remove first empty line
 	
 	# Catch data from each entry
-	# uid, name, user, platform_list, votes, coolness
 	for entry in entries:	
 		# Parse internal entry data
 		data = entry.split("<td>")
@@ -38,24 +40,25 @@ def start(file):
 		coolness = data[5]
 		
 		ld_data.addNode(uid,name,user,platform_list,votes,coolness)
-		# Create the JSON string
-		#json+="{'uid':"+uid+",'name':"+cleanStr(name)+",'user':"+cleanStr(user)+",'plaforms':["
-		#for platform in platform_list:
-		#	json+=cleanStr(platform)+","
-		#json+="],'votes':"+votes+",'coolness':"+coolness+"},\n"
-		
-	#json += "]}"
-	#print json
-	test = WordCloud(ld_data)
-	# Display word counts statistics
-	#for word,d in test._words.iteritems():
+	
+	## Word Cloud
+	# wc = WordCloud(ld_data)
+	# MultiPlatform
+	mp = MultiPlatform(ld_data)
+	for uid,g in mp._games.iteritems():
+		print "{'"+ mp._games[uid]._name + "':" + str(mp._games[uid]._platforms) + "},"
+	mp.printStats()
+	
+	""" TESTS """
+	## Display word counts statistics
+	# for word,d in wc._words.iteritems():
 	#	if(d.getRepetitionNumber()>1):
 	#		print word + " x " + str(d.getRepetitionNumber())# + ", linked to " + str(d._sentences)
-	# Display link between sentence -> words
-	#for uid,s in test._sentences.iteritems():
+	## Display link between sentence -> words
+	# for uid,s in wc._sentences.iteritems():
 	#	print s._value + " -> (" + str(s._words) + ")"
-	test.generateWordCorrelations()
-	test.printStats()
+	# wc.generateWordCorrelations()
+	# wc.printStats()
 	
 # Just type ">misc_links.py path/to/data.htm"
 if __name__ == '__main__':
