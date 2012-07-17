@@ -1,10 +1,10 @@
 <html lang="en">
   <head>
     <meta charset=utf-8>
-    <title>Test sigma.js</title>
+    <title>LD Viz</title>
     <link href="css/style.css" rel="stylesheet" type="text/css">
-    
-    <!-- Libraries code -->
+	
+	<!-- Libraries code -->
     <script src="js/lib/sigma.min.js"></script>
     <script src="js/lib/sigma.forceatlas2.js"></script>
     
@@ -20,8 +20,6 @@
     <!-- Page script -->
     <script src="js/script.js"></script>
         
-  <!--  <link rel="stylesheet" href="style.css"> -->
-    
   </head>
   <body>
 	
@@ -45,15 +43,22 @@
 			<option selected="selected" value="LD23">LD23 - Tiny World</option>
 			</select>
 			</form>
-			
+			<strong>~ Tools ~</strong><br/>
 			<input type="button" id="stop-layout" value="Start algorithm"/>
 			<input type="button" id="rescale-graph" value="Redraw"/>
 			<br/><br/>
 			<input type="button" id="label" value="Show only nodes"/>
 			<br/><br/>
-			
+			<strong>~ Stats ~</strong><br/>
+			<div id="stats">
+			</div>
+			<br/>
+			<strong>~ Instructions ~</strong><br/>
 			<div id="about">
-			TODO: About
+			- You can change anytime the dataSet (between LD21,22 and 23) and the graph type.<br/>
+			- Zoom with the mouse wheel.<br/>
+			- Click on a node to see its immediate neighbors.<br/>
+			- The "Start algorithm" will place the nodes in a more convenient way, give it a try! (press it again to stop the movement).
 			</div>
 			
 			<br/>
