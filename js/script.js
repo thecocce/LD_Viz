@@ -23,6 +23,7 @@ function init(){
 		document.getElementById('stats').innerHTML = JSON.stringify(wordCloud.stats);
 	else
 		document.getElementById('stats').innerHTML = JSON.stringify(multiplatform.stats);
+
 	
 	// Instanciate sigma.js and customize rendering :
 	sigInst = sigma.init(document.getElementById('sig'))
