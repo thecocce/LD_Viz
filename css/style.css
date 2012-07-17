@@ -44,11 +44,26 @@ a .twitter{
 
 #about{
 	padding:5px;
-	width:95%;
+	width:200px;
 	margin:auto;
 	background:grey;
 	color:white;
 	text-align:justify;
+	overflow:auto;
+	
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+#stats{
+	padding:10px;
+	width:200px;
+	margin:auto;
+	background:grey;
+	color:white;
+	text-align:justify;
+	overflow:auto;
 	
 	border-radius: 4px;
 	-moz-border-radius: 4px;

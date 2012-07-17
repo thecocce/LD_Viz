@@ -19,6 +19,11 @@ var showLabels = 1;
 
 function init(){
 	
+	if(viewMode=="wordcloud")
+		document.getElementById('stats').innerHTML = JSON.stringify(wordCloud.stats);
+	else
+		document.getElementById('stats').innerHTML = JSON.stringify(multiplatform.stats);
+	
 	// Instanciate sigma.js and customize rendering :
 	sigInst = sigma.init(document.getElementById('sig'))
 	//.debugMode(1)
