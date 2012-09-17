@@ -4,8 +4,8 @@ if (document.addEventListener) {
   window.onload = init;
 }
 
-const default_wordCloud = ld23_wordCloud;
-const default_multiplatform = ld23_multiplatform;
+const default_wordCloud = ld24_wordCloud;
+const default_multiplatform = ld24_multiplatform;
 
 const colors = {'osx': [10,255,255], 'web': [255,255,10], 'windows': [255,10,10], 'ios': [255,10,255], 'linux': [10,255,10], 'android':[50,50,255]};
 
@@ -244,6 +244,11 @@ function changeDataSet(dropdown){
 		case "LD23":
 		wordCloud = ld23_wordCloud;
 		multiplatform = ld23_multiplatform;
+		break;
+
+		case "LD24":
+		wordCloud = ld24_wordCloud;
+		multiplatform = ld24_multiplatform;
 		break;
 		
 		default:

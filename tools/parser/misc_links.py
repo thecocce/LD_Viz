@@ -42,12 +42,12 @@ def start(file):
 		ld_data.addNode(uid,name,user,platform_list,votes,coolness)
 	
 	## Word Cloud
-	# wc = WordCloud(ld_data)
+	wc = WordCloud(ld_data)
 	# MultiPlatform
-	mp = MultiPlatform(ld_data)
-	for uid,g in mp._games.iteritems():
-		print "{'uid':"+uid+",'name':'"+ mp._games[uid]._name + "','platforms':" + str(mp._games[uid]._platforms) + "},"
-	mp.printStats()
+	#mp = MultiPlatform(ld_data)
+	#for uid,g in mp._games.iteritems():
+	#	print "{'uid':"+uid+",'name':'"+ mp._games[uid]._name + "','platforms':" + str(mp._games[uid]._platforms) + "},"
+	# mp.printStats()
 	
 	""" TESTS """
 	## Display word counts statistics
@@ -57,8 +57,8 @@ def start(file):
 	## Display link between sentence -> words
 	# for uid,s in wc._sentences.iteritems():
 	#	print s._value + " -> (" + str(s._words) + ")"
-	# wc.generateWordCorrelations()
-	# wc.printStats()
+	wc.generateWordCorrelations()
+	wc.printStats()
 	
 # Just type ">misc_links.py path/to/data.htm"
 if __name__ == '__main__':
